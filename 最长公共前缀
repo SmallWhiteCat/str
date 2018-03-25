@@ -1,0 +1,33 @@
+class Solution:
+    def longestCommonPrefix(self, strs):
+        if strs == []:
+            return ""
+        if len(strs) == 1:
+            return strs[0]
+
+        min_str = len(strs[0])
+        for i in range(1, len(strs)):
+            if len(strs[i]) < min_str:
+                min_str = len(strs[i])
+        if min_str == 0:
+            return ""
+        common_s = []
+        for i in range(min_str):
+            length = len(strs) - 1
+            for j in range(1, len(strs)):
+                if not (strs[0][i] in strs[j][i]):
+                    if common_s != []:
+                        common = ''.join(common_s)
+                        return common
+                    else:
+                        return ""
+                else:
+                    length -= 1
+            if length == 0: 
+                common_s.append(strs[0][i])
+        if common_s != []:
+            common = ''.join(common_s)
+            return common
+        else:
+            return ""
+        
